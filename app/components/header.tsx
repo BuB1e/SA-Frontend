@@ -10,8 +10,12 @@ export default function Header() {
             
             {/* Text Buttons */}
             <div className="justify-evenly items-center space-x-10 md:space-x-32">
-                <RouteButton text="Create Form" destination="/" setSelect={setSelect} select={select}/>
-                <RouteButton text="Status" destination="/" setSelect={setSelect} select={select}/>
+                <RouteButton text="Payment" destination="payment" setSelect={setSelect} select={select}/>
+                <RouteButton text="DeliveryNoteDetail" destination="deliverynotedetail" setSelect={setSelect} select={select}/>
+                <RouteButton text="ConfirmationDetail" destination="confirmationdetail" setSelect={setSelect} select={select}/>
+                <RouteButton text="Confirmation" destination="confirmation" setSelect={setSelect} select={select}/>
+                <RouteButton text="Create Form" destination="createform" setSelect={setSelect} select={select}/>
+                <RouteButton text="Status" destination="status" setSelect={setSelect} select={select}/>
                 <RouteButton text="History" destination="/" setSelect={setSelect} select={select}/>
                 <RouteButton text="Log out" destination="login" setSelect={setSelect} select={select}/>
             </div>

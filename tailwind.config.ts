@@ -18,7 +18,8 @@ export default {
       },
       colors: {
         'primary-blue': '#4A5AB1',
-        
+        'button-red' : '#FF788F',
+        'button-green' : '#78FFB3',
       },
     },
   },
