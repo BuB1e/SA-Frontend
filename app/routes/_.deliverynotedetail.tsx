@@ -1,9 +1,16 @@
+import { useSearchParams } from "@remix-run/react";
 import CustomButton from "~/components/custom_button";
 import CustomTextBox from "~/components/custom_text_box";
 import DragDrop from "~/components/dragdrop";
 import TextRow from "~/components/text_row";
 
 export default function DeliveryNoteDetail() {
+    const [searchParams] = useSearchParams();
+
+    // Access query parameters
+    const product_unit = searchParams.get('unit');
+    const price = searchParams.get('price');
+    const total = Number(product_unit) * Number(price)
     return(
         <div className="flex flex-col items-center justify-center bg-white px-10 py-10 space-y-10 w-svh">
             {/* Top */}
@@ -12,9 +19,9 @@ export default function DeliveryNoteDetail() {
                 <div className="flex flex-col items-center px-40 py-20 justify-center rounded-xl bg-transparent border-4 border-black text-black space-y-6 w-full h-full">
                     <h1 className="font-bold underline text-[42px]">รายละเอียดสินค้า</h1>
                     <div className="flex flex-col w-full items-center justify-center space-y-2">
-                        <TextRow topic="Unit" text="xxxxx" unit="กิโลกรัม"/>
-                        <TextRow topic="Price" text="xxxxx" unit="บาท/กิโลกรัม"/>
-                        <TextRow topic="Total Price" text="xxxxx" unit="บาท"/>
+                        <TextRow topic="Unit" text={product_unit!} unit="กิโลกรัม"/>
+                        <TextRow topic="Price" text={price!} unit="บาท/กิโลกรัม"/>
+                        <TextRow topic="Total Price" text={String(total)} unit="บาท"/>
                     </div>
                 </div>
                 {/* Right */}
@@ -40,7 +47,7 @@ export default function DeliveryNoteDetail() {
                 <h1 className="font-bold underline text-[42px]">ลายเซ็น</h1>
                 <h1 className="text-[36px]">อัปโหลดลายเซ็น</h1>
                 <DragDrop/>
-                <CustomButton text="Confirm" color="bg-button-green"/>
+                <CustomButton text="Confirm" color="bg-button-green" route="/payment"/>
             </div>
         </div>
         

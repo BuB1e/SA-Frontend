@@ -30,7 +30,7 @@ export default function Status() {
         event, // MuiEvent<React.MouseEvent<HTMLElement>>
         details, // GridCallbackDetails
     ) => {
-        navigate('/')
+        
     };
 
     return(
