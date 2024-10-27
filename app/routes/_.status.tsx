@@ -1,4 +1,5 @@
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridEventListener } from "@mui/x-data-grid";
+import { useNavigate } from "@remix-run/react";
 
 export default function Status() {
     let rows = [
@@ -23,12 +24,21 @@ export default function Status() {
         {field: 'lastName', headerName: 'Last Name', flex: 1},
         {field: 'email', headerName: 'Last Name', flex: 1},
     ];
+    const navigate = useNavigate();
+    const handleEvent: GridEventListener<'rowClick'> = (
+        params, // GridRowParams
+        event, // MuiEvent<React.MouseEvent<HTMLElement>>
+        details, // GridCallbackDetails
+    ) => {
+        navigate('/')
+    };
+
     return(
         <div className="flex flex-col justify-center items-center space-y-4">
             <h1 className="text-black text-[36px] font-bold">Status</h1>
 
             <section id="DataGrid" style={{ height: '80%', width: '80%', marginLeft: 'auto', marginRight: 'auto' }}>
-                <DataGrid rows={rows} columns={columns} sx={{backgroundColor: "#caffca"}}/>
+                <DataGrid onRowClick={handleEvent} rows={rows} columns={columns} sx={{backgroundColor: "#caffca"}}/>
             </section>
         </div>
     );
