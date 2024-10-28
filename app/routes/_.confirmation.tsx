@@ -6,9 +6,9 @@ export default function Confirmation() {
         { id: 1, unit: 5, price: 200,  total: 1000, creationdate : '24/07/2023', status : 'Considered'},
         { id: 2, unit: 2, price: 200, total: 400, creationdate : '24/07/2023', status : 'Considered'},
         { id: 3, unit: 3, price: 200, total: 600, creationdate : '24/07/2023', status : 'Considered'},
-        { id: 4, unit: 10, price: 200, total: 2000, creationdate : '24/07/2023', status : 'Considered'},
+        { id: 4, unit: 10, price: 200, total: 2000, creationdate : '24/07/2023', status : 'Accept'},
         { id: 5, unit: 4, price: 200, total: 800, creationdate : '24/07/2023', status : 'Considered'},
-        { id: 6, unit: 7, price: 300, total: 2100, creationdate : '24/07/2023', status : 'Considered'},
+        { id: 6, unit: 7, price: 300, total: 2100, creationdate : '24/07/2023', status : 'Accept'},
         { id: 7, unit: 9, price: 200, total: 1800, creationdate : '24/07/2023', status : 'Considered'},
         { id: 8, unit: 8, price: 300, total: 2400, creationdate : '24/07/2023', status : 'Considered'},
     ];
