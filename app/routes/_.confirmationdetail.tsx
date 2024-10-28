@@ -15,7 +15,7 @@ export default function ConfirmationDetail() {
     console.log("PRICE : " + price);
     console.log("TOTAL : " + total + " }");
     return(
-        <div className="flex flex-col items-center justify-center bg-white px-10 py-10 space-y-10 w-svw h-[80%]">
+        <div className="flex flex-col items-center justify-center bg-white px-10 py-10 space-y-10 w-svw h-[80%] overflow-auto">
             {/* Top */}
             <div className="flex flex-col items-center justify-center rounded-xl bg-transparent border-4 border-black text-black space-y-6 w-full py-20">
                 <h1 className="font-bold underline text-[42px]">รายละเอียดสินค้า</h1>

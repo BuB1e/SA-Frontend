@@ -37,7 +37,7 @@ export default function Index() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center w-auto h-auto">
+    <div className="flex flex-col justify-center items-center w-auto h-auto overflow-auto">
       <div className="flex flex-col">
         {
           users.map((user) => (

@@ -12,7 +12,7 @@ export default function DeliveryNoteDetail() {
     const price = searchParams.get('price');
     const total = Number(product_unit) * Number(price)
     return(
-        <div className="flex flex-col items-center justify-center bg-white px-10 py-10 space-y-10 w-svh">
+        <div className="flex flex-col items-center justify-center bg-white px-10 py-10 space-y-10 w-svw overflow-auto">
             {/* Top */}
             <div className="flex flex-row px-0 py-0 space-x-4 w-full h-full items-center justify-center">
                 {/* Left */}

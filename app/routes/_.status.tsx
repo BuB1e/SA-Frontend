@@ -34,7 +34,7 @@ export default function Status() {
     };
 
     return(
-        <div className="flex flex-col justify-center items-center space-y-4">
+        <div className="flex flex-col justify-center items-center space-y-4 overflow-auto">
             <h1 className="text-black text-[36px] font-bold">Status</h1>
 
             <section id="DataGrid" style={{ height: '80%', width: '80%', marginLeft: 'auto', marginRight: 'auto' }}>

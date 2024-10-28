@@ -3,7 +3,7 @@ import CustomTextBox from "~/components/custom_text_box";
 
 export default function LoginPage() {
     return (
-        <div className="flex flex-col justify-center items-center h-svh bg-blue-200">
+        <div className="flex flex-col justify-center items-center h-svh bg-blue-200 overflow-auto">
             <div className="flex flex-col space-y-10 px-20 py-20 bg-white/20 justify-center items-center rounded-2xl shadow-xl">
                 {/* Login Text */}
                 <h1 className="text-black font-bold text-[48px]">Login</h1>
