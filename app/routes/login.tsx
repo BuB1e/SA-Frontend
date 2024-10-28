@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
 import CustomTextBox from "~/components/custom_text_box";
 
-export default function LoginPage() {
+export default function LoginView() {
     return (
         <div className="flex flex-col justify-center items-center h-svh bg-blue-200 overflow-auto">
             <div className="flex flex-col space-y-10 px-20 py-20 bg-white/20 justify-center items-center rounded-2xl shadow-xl">

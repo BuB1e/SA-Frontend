@@ -1,7 +1,7 @@
 import { DataGrid, GridEventListener } from "@mui/x-data-grid";
 import { createSearchParams, useNavigate } from "@remix-run/react";
 
-export default function History() {
+export default function HistoryView() {
     let rows = [
         { id: 1, unit: 5, receipt: 1,price : 200, total: 1000, creationdate : '24/07/2023'},
         { id: 2, unit: 2, receipt: 2,price : 200, total: 400, creationdate : '24/07/2023'},

@@ -4,7 +4,7 @@ import CustomTextBox from "~/components/custom_text_box";
 import DragDrop from "~/components/dragdrop";
 import TextRow from "~/components/text_row";
 
-export default function DeliveryNoteDetail() {
+export default function DeliveryNoteDetailView() {
     const [searchParams] = useSearchParams();
 
     // Access query parameters

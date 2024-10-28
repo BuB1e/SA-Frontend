@@ -1,4 +1,4 @@
-export default function HistoryDetail() {
+export default function HistoryDetailView() {
     return(
         <div className="flex flex-row w-svw bg-white px-10 py-10 space-x-10 justify-center items-center overflow-auto">
             {/* Delivery Note */}

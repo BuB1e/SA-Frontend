@@ -2,7 +2,7 @@ import CustomButton from "~/components/custom_button";
 import CustomTextBox from "~/components/custom_text_box";
 import DragDrop from "~/components/dragdrop";
 
-export default function CreateForm() {
+export default function CreateFormView() {
     return(
         <div className="flex flex-col justify-center items-center bg-white w-svw h-[80%] overflow-auto">
             <div className="flex flex-col space-y-2 justify-center items-center w-[600px]">

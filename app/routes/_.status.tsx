@@ -1,7 +1,7 @@
 import { DataGrid, GridEventListener } from "@mui/x-data-grid";
 import { useNavigate } from "@remix-run/react";
 
-export default function Status() {
+export default function StatusView() {
     let rows = [
         { id: 1, firstName: 'Jamaal', lastName: 'Gorczany',  email: 'jg@example.com' },
         { id: 2, firstName: 'Deon', lastName: 'Jast', email: 'dj@example.com'},

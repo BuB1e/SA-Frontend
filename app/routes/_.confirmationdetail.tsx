@@ -3,7 +3,7 @@ import CustomButton from "~/components/custom_button";
 import DragDrop from "~/components/dragdrop";
 import TextRow from "~/components/text_row";
 
-export default function ConfirmationDetail() {
+export default function ConfirmationDetailView() {
     const [searchParams] = useSearchParams();
 
     // Access query parameters

@@ -1,7 +1,7 @@
 import { DataGrid, GridEventListener } from "@mui/x-data-grid";
 import { createSearchParams, useNavigate } from "@remix-run/react";
 
-export default function DeliveryNote() {
+export default function DeliveryNoteView() {
     let rows = [
         { id: 1, unit: 5, price: 200,  supplier: "Au", purchasedate : '24/07/2023', status : 'Considered'},
         { id: 2, unit: 2, price: 200, supplier: "Au", purchasedate : '24/07/2023', status : 'Considered'},
