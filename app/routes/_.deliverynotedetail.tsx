@@ -47,7 +47,10 @@ export default function DeliveryNoteDetail() {
                 <h1 className="font-bold underline text-[42px]">ลายเซ็น</h1>
                 <h1 className="text-[36px]">อัปโหลดลายเซ็น</h1>
                 <DragDrop/>
-                <CustomButton text="Confirm" color="bg-button-green" route="/payment"/>
+                <div className="flex flex-row space-x-2">
+                    <CustomButton text="Cancel" color="bg-button-red" route="/deliverynote"/>
+                    <CustomButton text="Confirm" color="bg-button-green" route="/payment"/>
+                </div>
             </div>
         </div>
         
