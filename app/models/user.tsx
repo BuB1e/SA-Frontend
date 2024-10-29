@@ -37,9 +37,9 @@ export class User {
         return this.password;
     }
 
-    public getSalt(): string {
-        return this.salt;
-    }
+    // public getSalt(): string {
+    //     return this.salt;
+    // }
 
     public getPriority(): number {
         return this.priority;
@@ -56,10 +56,6 @@ export class User {
 
     public setPassword(password: string): void {
         this.password = password;
-    }
-
-    public setSalt(salt: string): void {
-        this.salt = salt;
     }
 
     public setPriority(priority: number): void {
