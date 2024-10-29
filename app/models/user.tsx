@@ -1,4 +1,4 @@
-import { Supplier } from "./Supplier";
+import { Supplier } from "./supplier";
 
 export class User {
     private uid: string;
