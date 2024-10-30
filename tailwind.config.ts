@@ -15,6 +15,8 @@ export default {
           '"Segoe UI Symbol"',
           '"Noto Color Emoji"',
         ],
+        inter: ["Inter", "sans-serif"],
+        urbanist: ["Urbanist", "sans-serif"],
       },
       colors: {
         'primary-blue': '#4A5AB1',

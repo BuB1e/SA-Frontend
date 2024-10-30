@@ -10,3 +10,19 @@ body {
     color-scheme: dark;
   }
 }
+
+@layer {
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Inter.ttf") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Urbanist";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Urbanist.ttf") format("woff2");
+  }
+}
