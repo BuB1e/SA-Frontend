@@ -1,6 +1,6 @@
 export default function HistoryDetailView() {
     return(
-        <div className="flex flex-row w-svw bg-white px-10 py-10 space-x-10 justify-center items-center overflow-auto">
+        <div className="flex flex-row w-svw h-auto bg-white px-10 py-10 space-x-10 justify-center items-center overflow-auto">
             {/* Delivery Note */}
             <div className="flex flex-col justify-center items-center w-[590px] h-[900px] space-y-4">
                 <h1 className="text-black font-bold text-3xl">Delivery Note</h1>

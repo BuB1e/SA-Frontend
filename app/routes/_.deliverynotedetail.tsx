@@ -12,7 +12,7 @@ export default function DeliveryNoteDetailView() {
     const price = searchParams.get('price');
     const total = Number(product_unit) * Number(price)
     return(
-        <div className="flex flex-col items-center justify-center bg-white px-10 py-10 space-y-10 w-svw overflow-auto">
+        <div className="flex flex-col items-center justify-center bg-white px-10 py-10 space-y-10 w-svw h-auto overflow-auto">
             {/* Top */}
             <div className="flex flex-row px-0 py-0 space-x-4 w-full h-full items-center justify-center">
                 {/* Left */}
@@ -44,12 +44,19 @@ export default function DeliveryNoteDetailView() {
             </div>
             {/* Bottom */}
             <div className="flex flex-col px-20 py-10 space-y-4 w-full items-center justify-center text-black rounded-xl bg-transparent border-4 border-black">
-                <h1 className="font-bold underline text-[42px]">ลายเซ็น</h1>
-                <h1 className="text-[36px]">อัปโหลดลายเซ็น</h1>
-                <DragDrop/>
+                <div className="flex flex-row justify-center items-center space-x-8 py-0 px-4">
+                    <div className="flex flex-col items-center justify-center">
+                        <h1 className="font-bold underline text-[42px]">อัปโหลดลายเซ็น</h1>
+                        <DragDrop/>
+                    </div>
+                    <div className="flex flex-col items-center justify-center">
+                        <h1 className="font-bold underline text-[42px]">อัปโหลดสลิปใบเสร็จ</h1>
+                        <DragDrop/>
+                    </div>
+                </div>
                 <div className="flex flex-row space-x-2">
                     <CustomButton text="Cancel" color="bg-button-red" route="/deliverynote"/>
-                    <CustomButton text="Confirm" color="bg-button-green" route="/payment"/>
+                    <CustomButton text="Confirm" color="bg-button-green"/>
                 </div>
             </div>
         </div>

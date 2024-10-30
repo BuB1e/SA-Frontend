@@ -11,10 +11,12 @@ export default function Header() {
             {/* Text Buttons */}
             <div className="flex flex-row justify-end items-center space-x-10 md:space-x-32">
                 <RouteButton text="Confirmation" destination="confirmation" setSelect={setSelect} select={select}/>
-                <RouteButton text="Create Form" destination="createform" setSelect={setSelect} select={select}/>
                 <RouteButton text="Status" destination="status" setSelect={setSelect} select={select}/>
                 <RouteButton text="Delivery Note" destination="deliverynote" setSelect={setSelect} select={select}/>
                 <RouteButton text="History" destination="history" setSelect={setSelect} select={select}/>
+                <RouteButton text="Create Form" destination="createform" setSelect={setSelect} select={select}/>
+                <RouteButton text="Suppliers" destination="suppliers" setSelect={setSelect} select={select}/>
+                <RouteButton text="Change Password" destination="changepassword" setSelect={setSelect} select={select}/>
                 <Link to="login">
                     <svg width="48px" height="48px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

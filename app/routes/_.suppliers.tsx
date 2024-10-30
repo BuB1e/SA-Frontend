@@ -1,7 +1,8 @@
 import { DataGrid, GridEventListener } from "@mui/x-data-grid";
 import { createSearchParams, useNavigate } from "@remix-run/react";
+import CustomButton from "~/components/custom_button";
 
-export default function ConfirmationView() {
+export default function SuppliersView() {
     let rows = [
         { id: 1, unit: 5, price: 200,  total: 1000, creationdate : '24/07/2023', status : 'Considered'},
         { id: 2, unit: 2, price: 200, total: 400, creationdate : '24/07/2023', status : 'Considered'},
@@ -32,8 +33,10 @@ export default function ConfirmationView() {
 
     return(
         <div className="flex flex-col justify-center p-10 items-center space-y-4 w-svw h-auto overflow-auto">
-            <h1 className="text-black text-[36px] font-bold">Confirmation</h1>
-
+            <div className="flex flex-row space-x-4">
+                <h1 className="text-black text-[36px] font-bold">Suppliers</h1>
+                <CustomButton text="Add Supplier" color="bg-button-green" route="/addsupplier"/>
+            </div>
             <section id="DataGrid" style={{ height: '80%', width: '80%', marginLeft: 'auto', marginRight: 'auto' }}>
                 <DataGrid onRowClick={handleEvent} rows={rows} columns={columns} sx={{backgroundColor: "#caffca"}}/>
             </section>
