@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, useState } from "react";
 
 interface props {
     type : string,
@@ -8,15 +8,22 @@ interface props {
 }
 
 export default function CustomTextBox({type, text, value, onChange} : props) {
-    var border = "black";
-    ( value == "" ) ? border = "red-600" : border = "black"; 
+    const [color, setColor] = useState<string>("");
+    function onBlur() {
+        if(value === "") {
+            setColor("border-red-600");
+        } else {
+            setColor("border-green-600");
+        }
+    }
 
     return(
-        <input 
+        <input
+            onBlur={onBlur}
             onChange={onChange}
             type={type}
             placeholder={text}
-            className={`w-full bg-white border-2 border-${border} h-12 rounded-xl px-4 py-2 text-black/80 focus:outline-none focus:border-green-600`}
+            className={`w-full bg-white border-2 ${color} h-12 rounded-xl px-4 py-2 text-black/80 focus:outline-none focus:border-blue-600`}
             value={value}
         />
     );
