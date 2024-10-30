@@ -26,19 +26,9 @@ export default function DeliveryNoteDetailView() {
                 </div>
                 {/* Right */}
                 <div className="flex flex-col items-center px-40 py-20 justify-center rounded-xl bg-transparent border-4 border-black text-black space-y-4 w-full h-full">
-                    <div className="flex flex-col items-start space-y-2">
-                        <h1 className="text-black font-bold text-[24px]">ชื่อผู้ดูแลการจัดซื้อ :</h1>
-                        <div className="flex flex-row space-x-2">
-                            <CustomTextBox type="text" text="ชื่อจริง"/>
-                            <CustomTextBox type="text" text="นามสกุล"/>
-                        </div>
-                    </div>
-                    <div className="flex flex-col items-start space-y-2">
-                        <h1 className="text-black font-bold text-[24px]">ชื่อผู้ส่ง :</h1>
-                        <div className="flex flex-row space-x-2">
-                            <CustomTextBox type="text" text="ชื่อจริง"/>
-                            <CustomTextBox type="text" text="นามสกุล"/>
-                        </div>
+                    <div className="flex flex-col items-start space-y-2 py-14">
+                        <h1 className="text-black font-bold text-[24px]">ชื่อผู้รับ :</h1>
+                        <CustomTextBox type="text" text="ชื่อจริง - นามสกุล"/>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import { useSearchParams } from "@remix-run/react";
 import CustomButton from "~/components/custom_button";
+import CustomTextBox from "~/components/custom_text_box";
 import DragDrop from "~/components/dragdrop";
 import TextRow from "~/components/text_row";
 
@@ -52,10 +53,11 @@ export default function ConfirmationDetailView() {
                         <TextRow topic="Total Price" text={total!} unit="บาท"/>
                     </div>
                 </div>
-                    <div className="flex flex-col px-20 py-10 space-y-4 w-full items-center justify-center text-black rounded-xl bg-transparent border-4 border-black">
-                    <h1 className="font-bold underline text-[42px]">ลายเซ็น</h1>
-                    <h1 className="text-[36px]">อัปโหลดลายเซ็น</h1>
-                    <DragDrop/>
+                <div className="flex flex-col px-20 py-10 space-y-4 w-full items-center justify-center text-black rounded-xl bg-transparent border-4 border-black">
+                    <div className="flex flex-col items-start space-y-2">
+                        <h1 className="text-black font-bold text-[24px]">ชื่อผู้ส่ง :</h1>
+                        <CustomTextBox type="text" text="ชื่อจริง - นามสกุล"/>
+                    </div>
                     <CustomButton text="Create" color="bg-button-green" route="/confirmation"/>
                 </div>
             </div>
