@@ -1,5 +1,3 @@
-import { DataGrid, GridEventListener } from "@mui/x-data-grid";
-import { createSearchParams, useNavigate } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import CustomButton from "~/components/custom_button";
 import CustomTextBox from "~/components/custom_text_box";

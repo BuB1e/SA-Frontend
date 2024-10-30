@@ -9,7 +9,7 @@ interface props {
 
 export default function CustomTextBox({type, text, value, onChange} : props) {
     var border = "black";
-   ( value == "") ? border = "red-600" : "black"
+    ( value == "" ) ? border = "red-600" : border = "black"; 
 
     return(
         <input 

@@ -37,7 +37,7 @@ export default function HistoryView() {
             <h1 className="text-black text-[36px] font-bold">History</h1>
 
             <section id="DataGrid" style={{ height: '80%', width: '80%', marginLeft: 'auto', marginRight: 'auto' }}>
-                <DataGrid onRowClick={handleEvent} rows={rows} columns={columns} sx={{backgroundColor: "#caffca"}}/>
+                <DataGrid onRowClick={handleEvent} rows={rows} columns={columns} sx={{backgroundColor: "#FFFFFF"}}/>
             </section>
         </div>
     );
