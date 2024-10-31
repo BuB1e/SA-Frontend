@@ -75,7 +75,7 @@ export default function HistoryView() {
         {field: 'unit', headerName: 'Unit', flex: 1},
         {field: 'price', headerName: 'Price', flex: 1},
         {field: 'total', headerName: 'Total Price', flex: 1},
-        {field: 'purchase_date', headerName: 'Purchase Date', flex: 1},
+        {field: 'purchase_date', headerName: 'Purchase Date', flex: 1, valueGetter: (value, row) => new Date(value).toUTCString().match("1970") !== null ? "Not Assign" : new Date(value).toLocaleString()},
     ];
     const navigate = useNavigate();
     const handleEvent: GridEventListener<'rowClick'> = (

@@ -1,6 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { DOMAIN } from "~/server/domain";
+import axios from "axios";
 
-export default function DragDrop() {
+interface DragDropProps {
+  id?: string;
+  fileNames?: string;
+  reciever_name?: string;
+  sign?: boolean;
+}
+
+export default function DragDrop({
+  id,
+  fileNames,
+  reciever_name,
+  sign
+}: DragDropProps) {
   const [file, setFile] = useState<File | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,6 +36,71 @@ export default function DragDrop() {
     event.preventDefault();
   };
 
+  async function uploadFile(file: File, fileName: string) {
+    const formdata = new FormData();
+    formdata.append("file", file);
+    formdata.append("filename", fileName);
+    formdata.append("key", "T6qom9erqaYUpddmnWlo");
+
+    const sendData = {
+      method: "POST",
+      url: "https://cdn.prakasitj.com/proxy/post",
+      headers: { "Content-Type": "multipart/form-data" },
+      data: formdata,
+    };
+
+    try {
+      const { data } = await axios.request(sendData);
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function updateDeliveryNote(
+    id: string,
+    reciever_name: string,
+    fileNames: string
+  ) {
+
+    interface DeliveryNote {
+      id: number;
+      reciever_name: string;
+      reciever_signature?: string;
+      purchase_date: string;
+    }
+    let data : DeliveryNote= {
+      id: parseInt(id),
+      reciever_name: reciever_name,
+      purchase_date: new Date().toISOString(),
+    };
+
+    if(sign){
+      data["reciever_signature"] = fileNames;
+    }
+
+    const sendData = {
+      method: "PUT",
+      url: DOMAIN + "/delivery/put",
+      headers: { "Content-Type": "application/json" },
+      data: JSON.stringify(data),
+    };
+
+    try {
+      const { data } = await axios.request(sendData);
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    if (file && id && fileNames) {
+      uploadFile(file, fileNames);
+      updateDeliveryNote(id, reciever_name || "", fileNames);
+    }
+  }, [file]);
+
   return (
     <div className="flex items-center justify-center w-full">
       <label
@@ -37,7 +116,9 @@ export default function DragDrop() {
               className="w-40 h-40 object-cover rounded-lg"
             />
             <p className="text-sm text-gray-700 mt-2">{file.name}</p>
-            <p className="text-xs text-gray-500">{(file.size / 1024).toFixed(2)} KB</p>
+            <p className="text-xs text-gray-500">
+              {(file.size / 1024).toFixed(2)} KB
+            </p>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -57,7 +138,8 @@ export default function DragDrop() {
               />
             </svg>
             <p className="mb-2 text-sm text-black">
-              <span className="font-semibold">Click to upload</span> or drag and drop
+              <span className="font-semibold">Click to upload</span> or drag and
+              drop
             </p>
             <p className="text-xs text-black">PNG (MAX. 800x400px)</p>
           </div>
