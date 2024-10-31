@@ -47,7 +47,6 @@ export default function DeliveryNoteView() {
   useEffect(() => {
     if(deliveryNote.length > 0 && supplier.length > 0 && quotation.length > 0){
         let temp: DeliverChart[] = [];
-        console.table(deliveryNote);
         deliveryNote.forEach((delivery) => {
             let quotation_id = delivery.quotation_id;
             let select_quotaion = quotation.find((q) => q.id === quotation_id);
