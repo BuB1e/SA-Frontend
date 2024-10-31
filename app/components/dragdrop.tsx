@@ -7,15 +7,22 @@ interface DragDropProps {
   fileNames?: string;
   reciever_name?: string;
   sign?: boolean;
+  onUpload: (uploaded: boolean) => void
 }
 
 export default function DragDrop({
   id,
   fileNames,
   reciever_name,
-  sign
+  sign,
+  onUpload
 }: DragDropProps) {
   const [file, setFile] = useState<File | null>(null);
+    
+  useEffect(() => {
+    if(file)
+        onUpload(true);
+  }, [file]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];

@@ -13,7 +13,16 @@ export default function DeliveryNoteDetailView() {
     const product_unit = searchParams.get('unit');
     const price = searchParams.get('price');
     const total = Number(product_unit) * Number(price)
-    const [name, setName] = useState("");
+    const [name, setName] = useState<string>("");
+    const [isSignUploaded, setIsSignUploaded] = useState(false);
+    const [isReceiptUploaded, setIsReceiptUploaded] = useState(false);
+    const [isFormValid, setIsFormValid] = useState<boolean>(false);
+
+    useEffect(() => {
+        const isValid = name.trim() !== "" && isSignUploaded && isReceiptUploaded;
+        setIsFormValid(isValid);
+      }, [name, isSignUploaded, isReceiptUploaded]);
+
     useEffect(() => {
         fetch(`https://pdf-generator.prakasitj.com/deliverynote/`+id);
     },[]);
@@ -43,16 +52,16 @@ export default function DeliveryNoteDetailView() {
                 <div className="flex flex-row justify-center items-center space-x-8 py-0 px-4">
                     <div className="flex flex-col items-center justify-center">
                         <h1 className="font-bold underline text-[42px]">อัปโหลดลายเซ็น</h1>
-                        <DragDrop id={id || ""} fileNames={"delivery-sign-"+id+".webp"} reciever_name={name} sign={true}/>
+                        <DragDrop id={id || ""} fileNames={"delivery-sign-"+id+".webp"} reciever_name={name} sign={true} onUpload={setIsSignUploaded}/>
                     </div>
                     <div className="flex flex-col items-center justify-center">
                         <h1 className="font-bold underline text-[42px]">อัปโหลดสลิปใบเสร็จ</h1>
-                        <DragDrop id={id || ""} fileNames={"delivery-reciept-"+id+".webp"} reciever_name={name} sign={false}/>
+                        <DragDrop id={id || ""} fileNames={"delivery-reciept-"+id+".webp"} reciever_name={name} sign={false} onUpload={setIsReceiptUploaded}/>
                     </div>
                 </div>
                 <div className="flex flex-row space-x-8">
                     <CustomButton text="Cancel" color="bg-button-red" route="/deliverynote"/>
-                    <CustomButton text="Confirm" color="bg-button-green" route="/deliverynote"/>
+                    <CustomButton text="Confirm" color="bg-button-green" route="/deliverynote" disabled={!isFormValid}/>
                 </div>
             </div>
         </div>

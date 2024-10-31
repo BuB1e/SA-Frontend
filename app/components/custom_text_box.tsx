@@ -1,4 +1,4 @@
-import { ChangeEventHandler, Dispatch, SetStateAction, useState } from "react";
+import { ChangeEventHandler, Dispatch, LegacyRef, SetStateAction, useEffect, useRef, useState} from "react";
 
 interface props {
     type : string,
@@ -8,10 +8,12 @@ interface props {
     onChange? : ChangeEventHandler<HTMLInputElement>;
 }
 
-export default function CustomTextBox({type, text, value, state,onChange} : props) {
+export default function CustomTextBox({type, text, value, state, onChange} : props) {
     const [color, setColor] = useState<string>("");
+    const inputRef = useRef<LegacyRef<HTMLInputElement> | undefined>();
+
     function onBlur(e:React.FocusEvent<HTMLInputElement, Element>) {
-        if(value === "") {
+        if(e.target.value === "") {
             setColor("border-red-600");
         } else {
             setColor("border-green-600");
@@ -23,6 +25,7 @@ export default function CustomTextBox({type, text, value, state,onChange} : prop
 
     return(
         <input
+            id="input"
             onBlur={(e)=>{onBlur(e)}}
             onChange={onChange}
             type={type}

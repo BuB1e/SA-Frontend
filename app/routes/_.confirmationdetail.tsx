@@ -1,4 +1,5 @@
 import { useSearchParams } from "@remix-run/react";
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import CustomButton from "~/components/custom_button";
 import CustomTextBox from "~/components/custom_text_box";
@@ -16,6 +17,8 @@ export default function ConfirmationDetailView() {
   const total = searchParams.get("total_price");
   const status = searchParams.get("status");
   const [success, setSuccess] = useState(false);
+  const [accept, setAccept] = useState(false);
+  const [decline, setDecline] = useState(false);
 
   useEffect(() => {
     if (!success) return;
@@ -33,10 +36,49 @@ export default function ConfirmationDetailView() {
     fetchDelivery();
     setSuccess(false);
   }, [success]);
-  console.log("{ ID : " + id);
-  console.log("UNIT : " + product_unit);
-  console.log("PRICE : " + price);
-  console.log("TOTAL : " + total + " }");
+
+  useEffect(() => {
+    if (!accept) return;
+    async function fetchAcceptQuotation() {
+      const options = {
+        method: "PUT",
+        url: "https://sa-db.prakasitj.com/quotation/put",
+        headers: { "Content-Type": "application/json" },
+        data: { id: parseInt(id || ""), status: "Accept" },
+      };
+
+      try {
+        const { data } = await axios.request(options);
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchAcceptQuotation();
+    setAccept(false);
+  }, [accept]);
+
+  useEffect(() => {
+    if (!decline) return;
+    async function fetchDeclineQuotation() {
+      const options = {
+        method: "PUT",
+        url: "https://sa-db.prakasitj.com/quotation/put",
+        headers: { "Content-Type": "application/json" },
+        data: { id: parseInt(id || ""), status: "Reject" },
+      };
+
+      try {
+        const { data } = await axios.request(options);
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchDeclineQuotation();
+    setDecline(false);
+  }, [decline]);
+
   if (status == "Considered") {
     return (
       <div className="flex flex-col items-center justify-center bg-white px-10 py-10 space-y-10  w-svw h-auto overflow-auto">
@@ -56,8 +98,22 @@ export default function ConfirmationDetailView() {
             ยอมรับใบเสนอสินค้า ?
           </h1>
           <div className="flex flex-row h-full items-center justify-center space-x-6">
-            <CustomButton text="Decline" color="bg-button-red" />
-            <CustomButton text="Confirm" color="bg-button-green" />
+            <CustomButton
+              text="Decline"
+              color="bg-button-red"
+              route="/confirmation"
+              click={() => {
+                setDecline(true);
+              }}
+            />
+            <CustomButton
+              text="Confirm"
+              color="bg-button-green"
+              route="/confirmation"
+              click={() => {
+                setAccept(true);
+              }}
+            />
           </div>
         </div>
       </div>
@@ -88,7 +144,9 @@ export default function ConfirmationDetailView() {
             text="Create"
             color="bg-button-green"
             route="/confirmation"
-            click={() => {setSuccess(true);}}
+            click={() => {
+              setSuccess(true);
+            }}
           />
         </div>
       </div>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import DeliveryNote from "~/models/delivery_note";
 import Quotation from "~/models/quotation";
 import Supplier from "~/models/supplier";
+import User from "~/models/user";
 import { DOMAIN } from "~/server/domain";
 
 export default function HistoryView() {
@@ -21,7 +22,9 @@ export default function HistoryView() {
       const [deliveryNote, setDeliveryNote] = useState<DeliveryNote[]>([]);
       const [quotation, setQuotation] = useState<Quotation[]>([]);
       const [supplier, setSupplier] = useState<Supplier[]>([]);
-    
+      const [headerName, setHeaderName] = useState("");
+      const [role, setRole] = useState<string>("");
+
       async function fetchDeliveryNote() {
         const response = await fetch(DOMAIN + "/delivery/getAllDeliveryNote");
         const data: DeliveryNote[] = await response.json();
@@ -41,20 +44,20 @@ export default function HistoryView() {
       }
     
       useEffect(() => {
+        setRole(sessionStorage.getItem("role") ?? "");
         fetchDeliveryNote();
         fetchQuotation();
         fetchSupplier();
       }, []);
     
       useEffect(() => {
-        if(deliveryNote.length > 0 && supplier.length > 0 && quotation.length > 0){
+        if(deliveryNote.length > 0 && supplier.length > 0 && quotation.length > 0) {
             let temp: HistoryChart[] = [];
             console.table(deliveryNote);
             deliveryNote.forEach((delivery) => {
                 let quotation_id = delivery.quotation_id;
                 let select_quotaion = quotation.find((q) => q.id === quotation_id);
                 let select_supplier = supplier.find((s) => s.supplier_id === select_quotaion?.supplier_id);
-    
                 let newRow : HistoryChart = {
                     id: delivery.id,
                     supplier: select_supplier?.supplier_name ?? "",
@@ -63,15 +66,16 @@ export default function HistoryView() {
                     total: select_quotaion?.total_price ?? 0,
                     purchase_date : new Date(delivery?.purchase_date).toUTCString()
                 }
+                setHeaderName("Supplier");
                 temp.push(newRow);
             });
             setRows(temp);
         }
-      }, [deliveryNote, supplier, quotation]);
+      }, [deliveryNote, supplier, quotation, role]);
     
     let columns: GridColDef<(typeof rows)[number]>[]  = [
         {field: 'id', headerName: 'Delivery Note ID', flex: 1},
-        {field: 'supplier', headerName: 'Supplier', flex: 1},
+        {field: 'supplier', headerName: role === "Supplier" ? "Receiver":"Supplier", flex: 1, valueGetter: (value, row) => role === "Factory" ? row.supplier : deliveryNote.find((d) => d.quotation_id === row.id)?.reciever_name},
         {field: 'unit', headerName: 'Unit', flex: 1},
         {field: 'price', headerName: 'Price', flex: 1},
         {field: 'total', headerName: 'Total Price', flex: 1},

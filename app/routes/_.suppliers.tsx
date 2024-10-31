@@ -47,15 +47,6 @@ export default function SuppliersView() {
     { field: "tax_number", headerName: "Tax Number", flex: 1 },
     { field: "user_id", headerName: "User ID", flex: 1 },
   ];
-  const navigate = useNavigate();
-  const handleEvent: GridEventListener<"rowClick"> = (
-    params, // GridRowParams
-    event, // MuiEvent<React.MouseEvent<HTMLElement>>
-    details // GridCallbackDetails
-  ) => {
-    const query = createSearchParams(params.row).toString();
-    navigate(`/confirmationdetail?${query}`);
-  };
 
   return (
     <div className="flex flex-col justify-center p-10 items-center space-y-4 w-svw h-auto overflow-auto">
@@ -77,7 +68,6 @@ export default function SuppliersView() {
         }}
       >
         <DataGrid
-          onRowClick={handleEvent}
           rows={rows}
           columns={columns}
           sx={{ backgroundColor: "#FFFFFF" }}
