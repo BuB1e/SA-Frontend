@@ -9,6 +9,6 @@ export default interface DeliveryNote {
   reciever_signature: string;
   reciever_name: string;
   receipt_id: number;
-  quotation: Quotation;
-  receipt: Receipt;
+//   quotation: Quotation;
+//   receipt: Receipt;
 }

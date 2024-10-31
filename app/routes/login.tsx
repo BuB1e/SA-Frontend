@@ -1,7 +1,25 @@
 import { Link } from "@remix-run/react";
+import { useEffect, useState } from "react";
 import CustomTextBox from "~/components/custom_text_box";
+import User from "~/models/user";
+import { DOMAIN } from "~/server/domain";
 
 export default function LoginView() {
+    // user/getByUsername
+    const [username, setUsername] = useState<String>("");
+    const [password, setPassword] = useState<String>("");
+
+    async function fetchUser() {
+        const response = await fetch(DOMAIN + "/user/getByUsername");
+        const data: User[] = await response.json();
+
+    
+      }
+    
+      useEffect(() => {
+
+      }, []);
+
     return (
         <div className="flex flex-col justify-center items-center w-full h-svh bg-blue-200 overflow-auto">
             <div className="flex flex-col space-y-10 px-20 py-20 bg-white/20 justify-center items-center rounded-2xl shadow-xl">

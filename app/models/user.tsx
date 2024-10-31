@@ -1,10 +1,10 @@
 import Supplier from "./supplier";
 
 export default interface User {
-  uid: string;
+  uuid: string;
   username: string;
   password: string;
   salt: string;
   priority: number;
-  suppliers: Supplier[];
+  // suppliers: Supplier[];
 }

@@ -2,6 +2,8 @@ import type { MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { useState, useEffect } from "react";
 import TextRow from "~/components/text_row";
+import User from "~/models/user";
+import { DOMAIN } from "~/server/domain";
 
 
 
@@ -28,6 +30,18 @@ export default function Index() {
 
   const [username, setUsername] = useState<string>("");
   const [role, setRole] = useState<string>("");
+  const [user, setUser] = useState<User[]>([]);
+
+  async function fetchUser() {
+    const response = await fetch(DOMAIN + "/user/get");
+    const data: User[] = await response.json();
+    setUser(data);
+    console.log(user);
+  }
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center bg-white px-10 py-10 space-y-10 w-svw h-auto overflow-auto">

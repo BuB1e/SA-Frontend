@@ -1,28 +1,71 @@
-import { DataGrid, GridEventListener } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridEventListener } from "@mui/x-data-grid";
 import { useNavigate } from "@remix-run/react";
+import { useEffect, useState } from "react";
+import Quotation from "~/models/quotation";
+import Supplier from "~/models/supplier";
+import { DOMAIN } from "~/server/domain";
 
 export default function StatusView() {
-    let rows = [
-        { id: 1, supplier: 'Jamaal', lastName: 'Gorczany',  email: 'jg@example.com' },
-        { id: 2, supplier: 'Deon', lastName: 'Jast', email: 'dj@example.com'},
-        { id: 3, supplier: 'Francisca', lastName: 'Lowe', email: 'fl@example.com'},
-        { id: 4, supplier: 'Christine', lastName: 'Hermiston', email: 'ch@example.com'},
-        { id: 5, supplier: 'Gunner', lastName: 'Will', email: 'gw@example.com'},
-        { id: 6, supplier: 'Ereyn', lastName: 'David', email: 'ed@example.com'},
-        { id: 7, supplier: 'Ambrose', lastName: 'Johnston', email: 'aj@example.com'},
-        { id: 8, supplier: 'Telly', lastName: 'Witting', email: 'tw@example.com'},
-        { id: 9, supplier: 'John', lastName: 'Gutman', email: 'jg@example.com'},
-        { id: 10, supplier: 'Spencer', lastName: 'Kemmer', email: 'sk@example.com'},
-        { id: 11, supplier: 'Holly', lastName: 'Parisian', email: 'hp@example.com'},
-        { id: 12, supplier: 'Jonas', lastName: 'Ambrose', email: 'ja@example.com'},
-        { id: 13, supplier: 'Mark', lastName: 'Smith', email: 'ms@example.com'},
-        { id: 14, supplier: 'Carole', lastName: 'Spencer', email: 'cs@example.com'},
-        { id: 15, supplier: 'Rebecca', lastName: 'Nelson', email: 'rn@example.com'},
-    ];
-    let columns = [
-        {field: 'supplier', headerName: 'First Name', flex: 1},
-        {field: 'lastName', headerName: 'Last Name', flex: 1},
-        {field: 'email', headerName: 'Last Name', flex: 1},
+    interface StatusChart {
+        id: number;
+        unit: number;
+        price: number;
+        total: number;
+        supplier: string;
+        creation_date: string;
+        status: string;
+      }
+    
+      const [rows, setRows] = useState<StatusChart[]>([]);
+      const [quotation, setQuotation] = useState<Quotation[]>([]);
+      const [supplier, setSupplier] = useState<Supplier[]>([]);
+    
+      async function fetchQuotation() {
+        const response = await fetch(DOMAIN + "/quotation/getAllQuotation");
+        const data: Quotation[] = await response.json();
+        setQuotation(data);
+      }
+    
+      async function fetchSupplier() {
+        const response = await fetch(DOMAIN + "/supplier/getAllSupplier");
+        const data: Supplier[] = await response.json();
+        setSupplier(data);
+      }
+    
+      useEffect(() => {
+        fetchQuotation();
+        fetchSupplier();
+      }, []);
+    
+      useEffect(() => {
+        if(supplier.length > 0 && quotation.length > 0){
+            let temp: StatusChart[] = [];
+            quotation.forEach((quotation) => {
+                let select_supplier = supplier.find((s) => s.supplier_id === quotation.supplier_id);
+
+                let newRow : StatusChart = {
+                    id: quotation.id,
+                    unit: quotation.unit ?? 0,
+                    price: quotation.price ?? 0,
+                    total: quotation.total_price ?? 0,
+                    supplier: select_supplier?.supplier_name ?? "",
+                    creation_date: new Date(quotation.creation_date).toUTCString() ?? "",
+                    status: quotation.status ?? "",
+                }
+                temp.push(newRow);
+            });
+            setRows(temp);
+        }
+      }, [supplier, quotation]);
+
+    let columns: GridColDef<(typeof rows)[number]>[] = [
+        {field: 'id', headerName: 'ID', flex: 1},
+        {field: 'unit', headerName: 'Unit', flex: 1},
+        {field: 'price', headerName: 'Price', flex: 1},
+        {field: 'total', headerName: 'Total Price', flex: 1},
+        {field: 'supplier', headerName: 'Supplier', flex: 1},
+        {field: 'creation_date', headerName: 'Creation Date', flex: 1},
+        {field: 'status', headerName: 'Status', flex: 1},
     ];
     const navigate = useNavigate();
     const handleEvent: GridEventListener<'rowClick'> = (

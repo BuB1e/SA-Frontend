@@ -1,4 +1,4 @@
-import { DataGrid, GridEventListener } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridEventListener } from "@mui/x-data-grid";
 import { createSearchParams, useNavigate } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import DeliveryNote from "~/models/delivery_note";
@@ -58,7 +58,7 @@ export default function DeliveryNoteView() {
                 supplier: select_supplier?.supplier_name ?? "",
                 unit: select_quotaion?.unit ?? 0,
                 price: select_quotaion?.price ?? 0,
-                total: select_quotaion?.total ?? 0,
+                total: select_quotaion?.total_price ?? 0,
             }
             temp.push(newRow);
         });
@@ -66,7 +66,7 @@ export default function DeliveryNoteView() {
     }
   }, [deliveryNote, supplier, quotation]);
 
-  let columns = [
+  let columns: GridColDef<(typeof rows)[number]>[]  = [
     { field: "id", headerName: "ID", flex: 1 },
     { field: "supplier", headerName: "Supplier", flex: 1 },
     { field: "unit", headerName: "Unit", flex: 1 },

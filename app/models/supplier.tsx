@@ -8,8 +8,8 @@ export default interface Supplier {
   supplier_name: string;
   tax_number: string;
   user_id: number;
-  delivery_notes: DeliveryNote[];
-  quotations: Quotation[];
-  receipts: Receipt[];
-  user: User;
+  // delivery_notes: DeliveryNote[];
+  // quotations: Quotation[];
+  // receipts: Receipt[];
+  // user: User;
 }

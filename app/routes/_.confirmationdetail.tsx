@@ -11,7 +11,7 @@ export default function ConfirmationDetailView() {
     const id = searchParams.get('id');
     const product_unit = searchParams.get('unit');
     const price = searchParams.get('price');
-    const total = searchParams.get('total');
+    const total = searchParams.get('total_price');
     const status = searchParams.get('status');
     console.log("{ ID : " + id);
     console.log("UNIT : " + product_unit);

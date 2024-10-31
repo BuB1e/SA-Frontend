@@ -44,7 +44,7 @@ export default function DeliveryNoteDetailView() {
                         <DragDrop/>
                     </div>
                 </div>
-                <div className="flex flex-row space-x-2">
+                <div className="flex flex-row space-x-8">
                     <CustomButton text="Cancel" color="bg-button-red" route="/deliverynote"/>
                     <CustomButton text="Confirm" color="bg-button-green"/>
                 </div>
