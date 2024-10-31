@@ -59,7 +59,7 @@ export default function StatusView() {
       }, [supplier, quotation]);
 
     let columns: GridColDef<(typeof rows)[number]>[] = [
-        {field: 'id', headerName: 'ID', flex: 1},
+        {field: 'id', headerName: 'Quotation ID', flex: 1},
         {field: 'unit', headerName: 'Unit', flex: 1},
         {field: 'price', headerName: 'Price', flex: 1},
         {field: 'total', headerName: 'Total Price', flex: 1},

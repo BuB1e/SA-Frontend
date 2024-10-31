@@ -70,7 +70,7 @@ export default function HistoryView() {
       }, [deliveryNote, supplier, quotation]);
     
     let columns: GridColDef<(typeof rows)[number]>[]  = [
-        {field: 'id', headerName: 'ID', flex: 1},
+        {field: 'id', headerName: 'Delivery Note ID', flex: 1},
         {field: 'supplier', headerName: 'Supplier', flex: 1},
         {field: 'unit', headerName: 'Unit', flex: 1},
         {field: 'price', headerName: 'Price', flex: 1},

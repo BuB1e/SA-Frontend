@@ -9,6 +9,7 @@ import { DOMAIN } from "~/server/domain";
 export default function DeliveryNoteView() {
   interface DeliverChart {
     id: number;
+    quotation_id : number;
     supplier: string;
     unit: number;
     price: number;
@@ -54,6 +55,7 @@ export default function DeliveryNoteView() {
 
             let newRow : DeliverChart = {
                 id: delivery.id,
+                quotation_id: select_quotaion!.id,
                 supplier: select_supplier?.supplier_name ?? "",
                 unit: select_quotaion?.unit ?? 0,
                 price: select_quotaion?.price ?? 0,
@@ -66,7 +68,8 @@ export default function DeliveryNoteView() {
   }, [deliveryNote, supplier, quotation]);
 
   let columns = [
-    { field: "id", headerName: "ID", flex: 1 },
+    { field: "id", headerName: "Delivery Note ID", flex: 1 },
+    { field: "quotation_id", headerName: "Quotation ID", flex: 1 },
     { field: "supplier", headerName: "Supplier", flex: 1 },
     { field: "unit", headerName: "Unit", flex: 1 },
     { field: "price", headerName: "Price", flex: 1 },

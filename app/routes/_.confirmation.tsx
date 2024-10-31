@@ -30,7 +30,7 @@ export default function ConfirmationView() {
   }, []);
 
   let columns: GridColDef<(typeof rows)[number]>[] = [
-    { field: "id", headerName: "ID", flex: 1 },
+    { field: "id", headerName: "Quotation ID", flex: 1 },
     { field: "unit", headerName: "Unit", flex: 1 },
     { field: "price", headerName: "Price", flex: 1 },
     { field: "total_price", headerName: "Total Price", flex: 1 },
