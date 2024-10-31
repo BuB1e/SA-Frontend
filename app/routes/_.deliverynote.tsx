@@ -36,7 +36,7 @@ export default function DeliveryNoteView() {
             <h1 className="text-black text-[36px] font-bold">Delivery Note</h1>
 
             <section id="DataGrid" style={{ height: '80%', width: '80%', marginLeft: 'auto', marginRight: 'auto' }}>
-                <DataGrid onRowClick={handleEvent} rows={rows} columns={columns} sx={{backgroundColor: "#FFFFFF"}}/>
+                <DataGrid onRowClick={handleEvent} rows={rows} columns={columns} sx={{backgroundColor: "#FFFFFF"}} className="[&>*]:font-urbanist [&>*]:font-bold"/>
             </section>
         </div>
     );

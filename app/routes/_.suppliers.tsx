@@ -38,7 +38,7 @@ export default function SuppliersView() {
                 <CustomButton text="Add Supplier" color="bg-button-green" route="/addsupplier"/>
             </div>
             <section id="DataGrid" style={{ height: '80%', width: '80%', marginLeft: 'auto', marginRight: 'auto' }}>
-                <DataGrid onRowClick={handleEvent} rows={rows} columns={columns} sx={{backgroundColor: "#FFFFFF"}}/>
+                <DataGrid onRowClick={handleEvent} rows={rows} columns={columns} sx={{backgroundColor: "#FFFFFF"}} className="[&>*]:font-urbanist [&>*]:font-bold"/>
             </section>
         </div>
     );
